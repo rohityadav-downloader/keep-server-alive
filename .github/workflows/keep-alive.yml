@@ -14,13 +14,22 @@ jobs:
       - name: Make GET request to keep server alive
         run: |
           echo "Making GET request to keep server alive..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" "https://tiktok-downloader-dej3.onrender.com/")
-          echo "Response code: $response"
+          echo "URL: https://tiktok-downloader-dej3.onrender.com/"
+          echo "----------------------------------------"
 
-          if [ $response -eq 200 ] || [ $response -eq 301 ] || [ $response -eq 302 ]; then
+          # Make request and capture both response code and data
+          response_data=$(curl -s "https://tiktok-downloader-dej3.onrender.com/")
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" "https://tiktok-downloader-dej3.onrender.com/")
+
+          echo "Response code: $response_code"
+          echo "Response data:"
+          echo "$response_data"
+          echo "----------------------------------------"
+
+          if [ $response_code -eq 200 ] || [ $response_code -eq 301 ] || [ $response_code -eq 302 ]; then
             echo "✅ Server pinged successfully!"
           else
-            echo "⚠️ Unexpected response code: $response"
+            echo "⚠️ Unexpected response code: $response_code"
           fi
 
       - name: Log timestamp
