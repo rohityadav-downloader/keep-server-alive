@@ -14,12 +14,12 @@ jobs:
       - name: Make GET request to keep server alive
         run: |
           echo "Making GET request to keep server alive..."
-          echo "URL: https://tiktok-downloader-dej3.onrender.com/"
+          echo "URL: https://tiktok-insta-downloader.onrender.com/"
           echo "----------------------------------------"
 
           # Make request and capture both response code and data
-          response_data=$(curl -s "https://tiktok-downloader-dej3.onrender.com/")
-          response_code=$(curl -s -o /dev/null -w "%{http_code}" "https://tiktok-downloader-dej3.onrender.com/")
+          response_data=$(curl -s "https://tiktok-insta-downloader.onrender.com/")
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" "https://tiktok-insta-downloader.onrender.com/")
 
           echo "Response code: $response_code"
           echo "Response data:"
